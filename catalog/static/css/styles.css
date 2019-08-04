@@ -1,10 +1,31 @@
 .sidebar-nav {
+
     margin-top: 20px;
     padding: 0;
     list-style: none;
 }
-.background-img{
-    background-image:url('\catalog\static\images\bhl-books.jpg'),absolute=true;
-    background-repeat:no-repeat;
-    background-size:100%;
+.navbar-collapse{
+background-color: rgb(96,96,96) !important;
+}
+.nav-link{
+color: white !important;
+}
+
+.col-sm-10{
+
+padding-top: 50px;
+  padding-right: 10px;
+  padding-bottom: 50px;
+  padding-left: 50px;
+}
+
+.display-4{
+color:  !important;
+}
+
+.container-fluid{
+padding-top: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+  padding-left: 50px;
 }
