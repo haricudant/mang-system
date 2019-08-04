@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catalog.apps.CatalogConfig',
+
+    'social_django',
+    # 'stripePaymentsConfig',
 ]
 
 MIDDLEWARE = [
@@ -48,14 +51,34 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = (
+            'social_core.backends.twitter.TwitterOAuth',
+
+	        'social_core.backends.facebook.FacebookOAuth2',
+
+	        'django.contrib.auth.backends.ModelBackend',
+
+	        'social_core.backends.google.GoogleOAuth2',
+
+)
+
+#stripe settings
+if DEBUG:
+    STRIPE_PUBLISHABLE_KEY =''
+    STRIPE_SECRET_KEY =''
+else:
+    STRIPE_PUBLISHABLE_KEY ='pk_test_sj5ySXRBusb8R3ANDKxb7yF5'
+    STRIPE_SECRET_KEY ="sk_test_DbnUZJEhtbpISevSdNpgWakB"
 
 ROOT_URLCONF = 'locallibrary.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,11 +140,20 @@ USE_TZ = True
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
-
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = ['/']
 # Add to test email:
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = [541073369091-bh8kshipnq2av6jdhdfitibppjkebdcs.apps.googleusercontent.com]
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET  = [NcTbSm-l8PFdliZqO1D25gzG]
 STATIC_URL = '/static/'
+# SOCIAL_AUTH_URL_NAMESPACE = 'social'
+#
+#
+# LOGIN_URL = '/auth/login/google-oauth2/'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

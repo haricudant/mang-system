@@ -15,11 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+# from django.cong.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
 
+]
+# if settings.DEBUG:
+#     urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 from django.urls import path
 from django.contrib import admin
@@ -27,10 +32,6 @@ from django.contrib import admin
 # Use include() to add URLS from the catalog application and authentication system
 from django.urls import include
 
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-]
 
 
 urlpatterns += [
@@ -49,12 +50,27 @@ urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 #Add URL maps to redirect the base URL to our application
 from django.views.generic import RedirectView
 urlpatterns += [
-    path('', RedirectView.as_view(url='/catalog/', permanent=True)),
+    path('', RedirectView.as_view(url='/', permanent=True)),
 ]
 
 
 
-#Add Django site authentication urls (for login, logout, password management)
+# from catalog.views import loginView, logout_view, register_view
+# #Add Django site authentication urls (for login, logout, password management)
+# urlpatterns += [
+# #
+# #
+#      path('accounts/login/', loginView),
+#      path('accounts/register/', register_view),
+#      path('accounts/logout/', logout_view),
+#  ]
+
+# urlpatterns = [
+#   path('', include('social_django.urls', namespace='social')),
+#   path('logout/', logout, {'next_page': settings.LOGOUT_REDIRECT_URL},
+#     name='logout')
+# ]
+
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]

@@ -1,10 +1,19 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 from django.urls import reverse #Used to generate urls by reversing the URL patterns
 
 
+# from django.contrib.auth.models import User
+
+# # Create user and save to the database
+# user = User.objects.create_user('myusername', 'myemail@crazymail.com', 'mypassword')
+#
+# # Update fields and then save again
+# user.first_name = 'John'
+# user.last_name = 'Citizen'
+# user.save()
 class Genre(models.Model):
     """
     Model representing a book genre (e.g. Science Fiction, Non Fiction).
@@ -18,17 +27,17 @@ class Genre(models.Model):
         return self.name
         
         
-class Language(models.Model):
-    """
-    Model representing a Language (e.g. English, French, Japanese, etc.)
-    """
-    name = models.CharField(max_length=200, help_text="Enter a the book's natural language (e.g. English, French, Japanese etc.)")
-    
-    def __str__(self):
-        """
-        String for representing the Model object (in Admin site etc.)
-        """
-        return self.name
+# class Language(models.Model):
+#     """
+#     Model representing a Language (e.g. English, French, Japanese, etc.)
+#     """
+#     name = models.CharField(max_length=200, help_text="Enter a the book's natural language (e.g. English, French, Japanese etc.)")
+#
+#     def __str__(self):
+#         """
+#         String for representing the Model object (in Admin site etc.)
+#         """
+#         return self.name
         
         
 class Book(models.Model):
@@ -44,7 +53,7 @@ class Book(models.Model):
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
       # ManyToManyField used because Subject can contain many books. Books can cover many subjects.
       # Subject declared as an object because it has already been defined.
-    language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
+    # language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
       
     def display_genre(self):
         """
@@ -134,3 +143,51 @@ class Author(models.Model):
         String for representing the Model object.
         """
         return '{0}, {1}'.format(self.last_name,self.first_name)
+
+
+class Subcription_type_quarterly(models.Model):
+    quarterly = models.CharField(max_length=200)
+
+    def __str__(self):
+        return  self.quarterly
+class Subscription_type_monthly(models.Model):
+    monthly = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.monthly
+
+class Subscription_type_halfyearly(models.Model):
+    halfyearly = models.CharField(max_length=200)
+
+class Subscription_type_annual(models.Model):
+    annual = models.CharField(max_length=200)
+
+        #
+        #
+        # null=True, max_length=100,
+        # default=None,
+        # choices=SMART_PHONE_OWNERSHIP, verbose_name='Do you own a Smartphone?')
+
+
+#
+# #If 'Yes' How many hours a day do you access the Internet on it?
+#     Monthly_Subscription = 'Monthly 15 Euros'
+#     Quarterly_Subscription = '25 Euros For three months'
+#     HalfYearly_Subscription = '45 Euros for Half a Year'
+#     Annual_subscription = '75 Euros per Year'
+#
+#
+#     SMART_PHONE_USAGE = (
+#         (Monthly_Subscription , '15 Euros'),
+#         (Quarterly_Subscription, '25 Euros'),
+#         (HalfYearly_Subscription, '45 Euros'),
+#         (Annual_subscription, '75 Euros')
+#
+#                )
+#
+#     smart_phone_usage = models.CharField(
+#         null=True, blank=True, max_length=100,
+#         choices=SMART_PHONE_USAGE,
+#         # default=None,
+#         verbose_name='What type of subscription you need?'
+#         )

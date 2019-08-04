@@ -1,13 +1,55 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-
+<h1>Annual Subscription Fee</h1>
 <form action="" method="post">
     {% csrf_token %}
+
     <table>
-    {{ form.as_table }}
+
+
+
     </table>
-    <input type="submit" value="Submit" />
-    
+
+
+
 </form>
+
+<h2>Buy for Euros:70.00</h2>
+
+<form >
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<button id="customButton">Purchase</button>
+</form>
+
+<script>
+var handler = StripeCheckout.configure({
+  key: 'pk_test_ckKO5YW4t5HNlJT5vOF6Ju8900XaANUGFO',
+  image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+  locale: 'auto',
+  token: function(token) {
+    alert("Membership added succesfully");
+    window.location.href = "http://127.0.0.1:8000/catalog/ ";
+    // Get the token ID to your server-side code for use.
+  }
+});
+document.getElementById('customButton').addEventListener('click', function(e) {
+  // Open Checkout with further options:
+  handler.open({
+    name: 'Demo Site',
+    description: '2 widgets',
+    currency: 'eur',
+    amount: 0*100
+  });
+  e.preventDefault();
+});
+
+// Close Checkout on page navigation:
+window.addEventListener('popstate', function() {
+  handler.close();
+});
+</script>
+
+
+
 {% endblock %}

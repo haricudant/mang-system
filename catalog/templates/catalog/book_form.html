@@ -8,6 +8,24 @@
     {{ form.as_table }}
     </table>
     <input type="submit" value="Submit" />
-    
+    <!--<script>-->
+    <!--var stripe = Stripe('pk_test_sj5ySXRBusb8R3ANDKxb7yF5');-->
+<!--alert("1")-->
+<!--alert("1")-->
+<!--stripe.redirectToCheckout({-->
+
+  <!--items: [-->
+    <!--// Replace with the ID of your SKU-->
+    <!--{sku: 'sku_123', quantity: 1}-->
+  <!--],-->
+  <!--successUrl: 'http://127.0.0.1:8000/catalog/',-->
+  <!--cancelUrl: 'https://your-website.com/canceled',-->
+<!--}).then(function (result) {-->
+    <!--alert("Annual Membership Joined"):-->
+  <!--// If `redirectToCheckout` fails due to a browser or network-->
+  <!--// error, display the localized error message to your customer-->
+  <!--// using `result.error.message`.-->
+<!--});-->
+<!--</script>-->
 </form>
 {% endblock %}

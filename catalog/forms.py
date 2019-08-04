@@ -23,3 +23,12 @@ class RenewBookForm(forms.Form):
 
         # Remember to always return the cleaned data.
         return data
+
+
+FRUIT_CHOICES= [
+    ('orange', 'Oranges'),
+    ('cantaloupe', 'Cantaloupes'),
+    ('mango', 'Mangoes'),
+    ('honeydew', 'Honeydews'),
+    ]
+

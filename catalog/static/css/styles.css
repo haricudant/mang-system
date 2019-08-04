@@ -3,3 +3,8 @@
     padding: 0;
     list-style: none;
 }
+.background-img{
+    background-image:url('\catalog\static\images\bhl-books.jpg'),absolute=true;
+    background-repeat:no-repeat;
+    background-size:100%;
+}
