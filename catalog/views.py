@@ -200,7 +200,7 @@ def emp(request):
                 email = 'x18131581@student.ncirl.ie'
                 print(email + "jjkjhkjhkajhdajdhpwpqoiw")
                 message = 'Thanks for Verfying your City Library account. Please click the below link to continue..  http://ec2-54-154-11-155.eu-west-1.compute.amazonaws.com:8000/catalog'
-                subject = 'This is my master piece'
+                subject = 'ACCOUNT VERIFICATION '
                 sqs = boto3.client('sqs', aws_access_key_id='AKIAX5756CDNQQXY5E47',
                                    aws_secret_access_key='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',
                                    region_name='eu-west-1')
