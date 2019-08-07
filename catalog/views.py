@@ -339,4 +339,4 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
-    return render(request,"sign.html")
+    return render(request,"registration/logged_out.html")

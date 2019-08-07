@@ -54,3 +54,6 @@ class AuthorModelTest(TestCase):
         self.assertEquals(author.get_absolute_url(),'/catalog/author/1')
         
 #lkjlsak bldbuywuteywteiy tiy ytwytei yvwyet iuytwe viweytv iwy
+
+
+

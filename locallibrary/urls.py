@@ -83,8 +83,8 @@ urlpatterns += [
     # path('', views.emp, name="login"),
     # path('success/',views.author, name ="au"),
 
-path('', loginView),
-path('accounts/register/', register_view),
+path('accounts/log/', loginView,name="logout"),
+path('', register_view),
 path('accounts/logout/', logout_view),
 # path('accounts/',include('django.contrib.auth.urls')),
 ]

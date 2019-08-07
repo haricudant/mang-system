@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +9,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Document</title>
 </head>
-
-<div  class = "jumbotron container">
+<div class="jumbotron container" >
+    <h4>Welcome to the Online City Library!</h4>
+</div>
+<div  class = "jumbotron container-fluid" style = "width:900px; height:400px">
 <body>
 
     <form method="POST">
@@ -18,12 +21,23 @@
 
         <input type="submit" class = "btn btn-primary" />
     </form>
-<form action="/accounts/login/" method="POST">
-            <!--{% csrf_token %}-->
-                <!--<button type="submit" class=" btn btn-primary"></button>-->
+<form action="accounts/log/" method="POST">
+        {% csrf_token %}
+    <p></p>
+                <button type="submit"  class=" btn btn-primary-sucesss">Already Registered! Login Here</button>
         </form>
-
-
 </body>
 </div>
 </html>
+
+
+<style>
+  body{
+    text-align:center;
+    background-image:url('{{ STATIC_URL }}/static/images/bhl-books.jpg');
+  }
+
+  body, html {
+  height: 100%;
+}
+</style>
