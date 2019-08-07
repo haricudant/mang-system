@@ -134,7 +134,7 @@ button ~ button {
         var provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
         firebase.auth().signInWithPopup(provider).then(function(result) {
-          window.location.href = "http://127.0.0.1:8000/catalog";
+          window.location.href = "http://ec2-54-154-11-155.eu-west-1.compute.amazonaws.com:8000/catalog";
           var token = result.credential.accessToken;
           var user = result.user;
           document.getElementById('quickstart-oauthtoken').textContent = token;
@@ -151,7 +151,7 @@ button ~ button {
         });
       } else {
         firebase.auth().signOut();
-         window.location.href = "http://127.0.0.1:8000/catalog";
+         window.location.href = "http://ec2-54-154-11-155.eu-west-1.compute.amazonaws.com:8000/catalog";
       }
       document.getElementById('quickstart-sign-in').disabled = true;
     }
