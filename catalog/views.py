@@ -282,7 +282,7 @@ def register_view(request):
             form = UserRegisterForm(request.POST)
             if form.is_valid():
                 try:
-                    email = 'x18131581@student.ncirl.ie'
+                    email = 'x18170625@student.ncirl.ie'
                     print(email + "jjkjhkjhkajhdajdhpwpqoiw")
                     message = 'Thanks for Verfying your City Library account. Please click the below link to continue..  https://127.0.0.1:8000/catalog'
                     subject = 'This is my master piece'
