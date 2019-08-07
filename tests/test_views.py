@@ -342,3 +342,4 @@ class AuthorCreateViewTest(TestCase):
         #Manually check redirect because we don't know what author was created
         self.assertEqual( resp.status_code,302)
         self.assertTrue( resp.url.startswith('/catalog/author/') )
+#lklkakjdhskajdhlksj vsd vhgkdv ha

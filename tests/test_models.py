@@ -53,3 +53,4 @@ class AuthorModelTest(TestCase):
         #This will also fail if the urlconf is not defined.
         self.assertEquals(author.get_absolute_url(),'/catalog/author/1')
         
+#lkjlsak bldbuywuteywteiy tiy ytwytei yvwyet iuytwe viweytv iwy
