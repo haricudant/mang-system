@@ -4,6 +4,21 @@
     background-image:url('{{ STATIC_URL }}images/bhl-books.jpg');
     background-repeat:no-repeat;
     background-size:100%;
+
+
+.map-container-6{
+overflow:hidden;
+padding-bottom:10.25%;
+position:relative;
+height:0;
+}
+.map-container-6 iframe{
+left:0;
+top:0;
+height:100%;
+width:100%;
+position:absolute;
+}
 </style>
 
 {% block content %}
@@ -12,13 +27,12 @@
   <p class="lead">Surplus Knowledge in a building </p>
   <hr class="my-4">
   <p>All Genres book are available on 24*7 with special digital catalog </p>
-  <a class="btn btn-primary btn-sm" href="#" role="button">contact us</a>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+  <a class="btn btn-primary btn-sm" href="https://www.pdffiller.com/preview/416/109/416109967.png" role="button">New Arrival</a>
     <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
          <script src = "https://maps.googleapis.com/maps/api/js"></script>
 </div>
 
-<div class ="jumbotron container-fluid" style = "width:1200px; height:300px;"">
+<div class=" jumbotron container-fluid" style = "width:1200px; height:300px">
   <p>The library has the following record counts:</p>
 
 <table class="table table-dark">
@@ -40,12 +54,114 @@
 
   </tbody>
 </table>
-</div>
-<div class = "alert alert-info ", style = "width:1200px; height:50px, role="alert">
+</div></div>
 
+<div class = "alert alert-info container", style = "width:700px; height:20px, role="alert">
 <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
 </div>
-</div>
+
+
+      <!--Section: Contact v.1-->
+<section class="section pb-5">
+
+  <!--Section heading-->
+  <h3 class="section-heading h1 pt-4" font color="white">Contact us </h3>
+  <!--Section description-->
+  <p class="section-description pb-4"></div>
+
+  <div class="row">
+
+    <!--Grid column-->
+    <div class="col-lg-5 mb-4">
+
+      <!--Form with header-->
+      <div class="card">
+
+        <div class="card-body">
+          <!--Header-->
+          <div class="form-header blue accent-1">
+            <h3><i class="fas fa-envelope"></i> Write to us:</h3>
+          </div>
+
+          <p>We will reply for your query ASAP</p>
+          <br>
+
+          <!--Body-->
+          <div class="md-form">
+            <i class="fas fa-user prefix grey-text"></i>
+            <input type="text" id="form-name" class="form-control">
+            <label for="form-name">Your name</label>
+          </div>
+
+          <div class="md-form">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <input type="text" id="form-email" class="form-control">
+            <label for="form-email">Your email</label>
+          </div>
+
+          <div class="md-form">
+            <i class="fas fa-tag prefix grey-text"></i>
+            <input type="text" id="form-Subject" class="form-control">
+            <label for="form-Subject">Subject</label>
+          </div>
+
+          <div class="md-form">
+            <i class="fas fa-pencil-alt prefix grey-text"></i>
+            <textarea id="form-text" class="form-control md-textarea" rows="3"></textarea>
+            <label for="form-text">Icon Prefix</label>
+          </div>
+
+          <div class="text-center mt-4">
+            <button class="btn btn-light-blue">Submit</button>
+          </div>
+
+        </div>
+
+      </div>
+      <!--Form with header-->
+
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-lg-7 jumbotron">
+
+      <!--Google map-->
+      <div id="map-container-google-11" class="z-depth-1-half map-container-6" style="height: 310px">
+        <iframe src="https://maps.google.com/maps?q=new%20delphi&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+
+      <br>
+      <!--Buttons-->
+      <div class="row text-center">
+        <div class="col-md-4">
+          <a class="btn-floating blue accent-1"><i class="fas fa-map-marker-alt"></i></a>
+          <p>Dublin</p>
+          <p>Republic of Ireland</p>
+        </div>
+
+        <div class="col-md-4">
+          <a class="btn-floating blue accent-1"><i class="fas fa-phone"></i></a>
+          <p>+353 894562027</p>
+          <p>Mon - Fri, 8:00-22:00</p>
+        </div>
+
+        <div class="col-md-4">
+          <a class="btn-floating blue accent-1"><i class="fas fa-envelope"></i></a>
+          <p>info@gmail.com</p>
+          <p>sale@gmail.com</p>
+        </div>
+      </div>
+
+    </div>
+    <!--Grid column-->
+
+  </div>
+
+</section>
+<!--Section: Contact v.1-->
+
 {% endblock %}
  </div>
 

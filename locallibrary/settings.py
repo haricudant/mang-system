@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
 
     'social_django',
+   # 'boto3',
     # 'stripePaymentsConfig',
 ]
 

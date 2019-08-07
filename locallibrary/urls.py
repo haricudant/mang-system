@@ -26,16 +26,17 @@ urlpatterns = [
 #     urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 #     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-from django.urls import path
+from django.urls import path, include
 from django.contrib import admin
 
 # Use include() to add URLS from the catalog application and authentication system
-from django.urls import include
+
 
 
 
 urlpatterns += [
     path('catalog/', include('catalog.urls')),
+
 ]
 
 
@@ -49,9 +50,10 @@ urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 #Add URL maps to redirect the base URL to our application
 from django.views.generic import RedirectView
-urlpatterns += [
-    path('', RedirectView.as_view(url='/', permanent=True)),
-]
+# urlpatterns += [
+#     path('', RedirectView.as_view(url='/', permanent=True)),
+#
+# ]
 
 
 
@@ -70,7 +72,19 @@ urlpatterns += [
 #   path('logout/', logout, {'next_page': settings.LOGOUT_REDIRECT_URL},
 #     name='logout')
 # ]
+from django.urls import path, include
+from catalog import views
+from catalog.views import loginView, logout_view, register_view
+
 
 urlpatterns += [
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('success/', views.emp),
+    # path(r'^login/$', auth_views.login),
+    # path('', views.emp, name="login"),
+    # path('success/',views.author, name ="au"),
+
+path('', loginView),
+path('accounts/register/', register_view),
+path('accounts/logout/', logout_view),
+# path('accounts/',include('django.contrib.auth.urls')),
 ]

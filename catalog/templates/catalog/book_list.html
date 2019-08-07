@@ -1,6 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+<div class="jumbotron">
     <h1>Book List</h1>
 
     {% if book_list %}
@@ -18,4 +19,5 @@
       <p>There are no books in the library.</p>
     {% endif %}       
 {% endblock %}
+</div>
 

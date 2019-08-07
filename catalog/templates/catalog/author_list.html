@@ -1,19 +1,23 @@
 {% extends "base_generic.html" %}
 
+
+  <ul>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 {% block content %}
+ <div class="jumbotron container">
+
 
 <h1>Author List</h1>
 
 {% if author_list %}
-  <ul>
-
-  {% for author in author_list %}
+   {% for author in author_list %}
     <li>
       <a href="{{ author.get_absolute_url }}">
       {{ author }} ({{author.date_of_birth}} - {% if author.date_of_death %}{{author.date_of_death}}{% endif %})
       </a>
     </li>
   {% endfor %}
+ </div>
 
  </ul>
 {% else %}

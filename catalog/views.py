@@ -1,15 +1,14 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-
+import boto3
+from catalog.forms import EmployeeForm
+from django.contrib.auth import views as auth_views
 # Create your views here.
 
-from .models import Book, Author, BookInstance, Genre,Subscription_type_halfyearly,Subscription_type_annual,Subscription_type_monthly,Subcription_type_quarterly
+from .models import Book, Author, BookInstance, Genre,Employee
 # @login_required
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-class MonthlyCreate(CreateView):
-    model = Subscription_type_monthly
-    fields = '__all__'
 
 
 def index(request):
@@ -23,11 +22,10 @@ def index(request):
     num_instances_available=BookInstance.objects.filter(status__exact='a').count()
     num_authors=Author.objects.count()  # The 'all()' is implied by default.
 
-    # Number of visits to this view, as counted in the session variable.
     num_visits=request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits+1
     
-    # Render the HTML template index.html with the data in the context variable.
+
     return render(
         request,
         'index.html',
@@ -43,7 +41,7 @@ def default_map(request):
     return render(request, 'home.html',
                   { 'mapbox_access_token': mapbox_access_token })
 
-
+login_required
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 
@@ -116,7 +114,7 @@ from django.urls import reverse
 import datetime
 from django.contrib.auth.decorators import permission_required
 
-from .forms import RenewBookForm
+# from catalog.forms import RenewBookForm
 
 @permission_required('catalog.can_mark_returned')
 def renew_book_librarian(request, pk):
@@ -163,14 +161,6 @@ class AuthorCreate( CreateView):
 
 
 
-class QuarterlyCreate(CreateView):
-    model = Subcription_type_quarterly
-
-class HalfyearlyCreate(CreateView):
-    model = Subscription_type_halfyearly
-
-class AnnualCreate(CreateView):
-    model = Subscription_type_annual
 
 
 class AuthorUpdate(PermissionRequiredMixin, UpdateView):
@@ -199,3 +189,154 @@ class BookDelete(PermissionRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('books')
     permission_required = 'catalog.can_mark_returned'
+
+
+
+def emp(request):
+    if request.method == "POST":
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            try:
+                email = 'x18131581@student.ncirl.ie'
+                print(email + "jjkjhkjhkajhdajdhpwpqoiw")
+                message = 'Thanks for Verfying your City Library account. Please click the below link to continue..  https://127.0.0.1:8000/catalog'
+                subject = 'This is my master piece'
+                sqs = boto3.client('sqs', aws_access_key_id='AKIAX5756CDNQQXY5E47',
+                                   aws_secret_access_key='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',
+                                   region_name='eu-west-1')
+                queue_url = 'https://sqs.eu-west-1.amazonaws.com/545456525531/send_otp'
+
+                response = sqs.send_message(
+                    QueueUrl=queue_url,
+                    DelaySeconds=10,
+                    MessageAttributes={
+                        'email': {
+                            'DataType': 'String',
+                            'StringValue': email
+                        },
+                        'subject': {
+                            'DataType': 'String',
+                            'StringValue': subject
+                        },
+                        'message': {
+                            'DataType': 'String',
+                            'StringValue': message
+                        }
+                    },
+                    MessageBody=('SES email trigger'
+                                 )
+                )
+                return HttpResponseRedirect('/success/')
+            except:
+                pass
+    else:
+            print('gjgkjgvkjgvkjvkgvgkv kjgvkjvvgvg')
+            form = EmployeeForm()
+            return render(request,'success.html',{'form':form})
+#
+# @login_required
+# def author(request):
+#   return render(request,'success.html')
+
+# def admin(request):
+#     return render (request()
+
+
+from django.contrib.auth import(
+
+    authenticate,
+    get_user_model,
+    login,
+    logout
+
+)
+
+
+from .forms import UserLoginForm, UserRegisterForm
+
+
+def loginView(request):
+    next = request.GET.get('next') ##
+    form =UserLoginForm(request.POST or None)
+    if form.is_valid():
+        username =form.cleaned_data.get('username')
+        password =  form.cleaned_data.get('password')
+        user  =authenticate(username=username, password = password)
+        login(request, user)
+
+        if next:
+            return redirect(next)
+        return HttpResponseRedirect('/catalog')
+
+    context ={
+        'form' :form,
+    }
+    return render(request, "registration/login.html", context)
+
+
+def register_view(request):
+    next = request.GET.get('next')
+    form =UserRegisterForm(request.POST or None)
+    if form.is_valid():
+        if request.method == "POST":
+            form = UserRegisterForm(request.POST)
+            if form.is_valid():
+                try:
+                    email = 'x18131581@student.ncirl.ie'
+                    print(email + "jjkjhkjhkajhdajdhpwpqoiw")
+                    message = 'Thanks for Verfying your City Library account. Please click the below link to continue..  https://127.0.0.1:8000/catalog'
+                    subject = 'This is my master piece'
+                    sqs = boto3.client('sqs', aws_access_key_id='AKIAX5756CDNQQXY5E47',
+                                       aws_secret_access_key='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',
+                                       region_name='eu-west-1')
+                    queue_url = 'https://sqs.eu-west-1.amazonaws.com/545456525531/send_otp'
+
+                    response = sqs.send_message(
+                        QueueUrl=queue_url,
+                        DelaySeconds=10,
+                        MessageAttributes={
+                            'email': {
+                                'DataType': 'String',
+                                'StringValue': email
+                            },
+                            'subject': {
+                                'DataType': 'String',
+                                'StringValue': subject
+                            },
+                            'message': {
+                                'DataType': 'String',
+                                'StringValue': message
+                            }
+                        },
+                        MessageBody=('SES email trigger'
+                                     )
+                    )
+                    return HttpResponseRedirect('/success/')
+                except:
+                    pass
+        else:
+            print('gjgkjgvkjgvkjvkgvgkv kjgvkjvvgvg')
+            form = UserRegisterForm()
+            return render(request, 'success.html', {'form': form})
+        user = form.save(commit=False)
+        password = form.cleaned_data.get('password')
+        user.set_password (password)
+        user.save()
+        new_user =authenticate(username = user.username, password = password)
+        login(request, new_user)
+        if next:
+            return redirect(next)
+        return HttpResponseRedirect('/success')
+
+    context ={
+        'form':form
+
+    }
+    return render(request, "sign_up.html", context)
+
+# Create your views here.
+
+
+def logout_view(request):
+    logout(request)
+    return render(request,"sign.html")

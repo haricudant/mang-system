@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import path,include
+from .views import loginView, logout_view, register_view
 
-from . import views
-
+from  catalog import views
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -22,9 +22,6 @@ urlpatterns += [
     path('book/<uuid:pk>/renew/', views.renew_book_librarian, name='renew-book-librarian'),
 ]
 
-urlpatterns += [
-    path('subscription_type_monthly/',views.MonthlyCreate, name="month_create"),
-]
 
 # Add URLConf to create, update, and delete authors
 urlpatterns += [  
@@ -38,5 +35,5 @@ urlpatterns += [
     path('book/create/', views.BookCreate.as_view(), name='book_create'),
     path('book/<int:pk>/update/', views.BookUpdate.as_view(), name='book_update'),
     path('book/<int:pk>/delete/', views.BookDelete.as_view(), name='book_delete'),
-]
 
+]
